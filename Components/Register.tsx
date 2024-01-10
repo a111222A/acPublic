@@ -55,7 +55,7 @@ const Register = ({ navigation }: { navigation: any }) => {
                 <Text style={{ fontSize: 20, color: 'black' }}>  Last name :</Text>
                 <TextInput placeholder=' Enter Your Nane' style={style.InputBox} />
 
-                <Text style={{ fontSize: 20, color: 'black' }}>  Mobile No :</Text>
+                <Text style={{ fontSize: 20, color: 'black' }}>  Mobile Number :</Text>
                 <TextInput placeholder=' Enter Your Mobile No' style={style.InputBox} />
 
                 <Text style={{ fontSize: 20, color: 'black' }}>  Email ID1 :</Text>
