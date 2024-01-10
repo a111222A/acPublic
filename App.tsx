@@ -1,118 +1,74 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React from 'react'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Login from './Components/Login';
+import Home from './Components/Home';
+import Register from './Components/Register';
+import RequestOTP from './Components/RequestOTP';
+import VerifyPhone from './Components/VerifyPhone';
+import ForgotPassword from './Components/ForgotPassword';
+import ChangePassword from './Components/ChangePassword';
+import NewCase from './Components/NewCase';
+import Completed from './Components/Completed';
+import Pending from './Components/Pending';
+import Rejected from './Components/Rejected';
+import ViewJob from './Components/ViewJob';
+import Profile from './Components/Profile';
+import Task from './Components/Task';
+import EditProfile from './Components/EditProfile';
+import Dashbord from './Components/Dashbord';
+import NewDashbord from './Components/NewDashbord';
+import ManageAddress from './Components/ManageAddress';
+import RegisterComplaint from './Components/RegisterComplaint';
+import Incomplite from './Components/Incomplite';
+import managePayments from './Components/managePayments';
+import ServicePrice from './Components/ServicePrice';
+import Discount from './Components/Discount';
+import MyVouchers from './Components/MyVouchers';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
+    <NavigationContainer >
+      <Stack.Navigator initialRouteName='Login' >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="RequestOTP" component={RequestOTP} />
+        <Stack.Screen name="VerifyPhone" component={VerifyPhone} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ChangePassword" component={ChangePassword} />
+        <Stack.Screen name="NewCase" component={NewCase} />
+        <Stack.Screen name="Completed" component={Completed} />
+        <Stack.Screen name="Pending" component={Pending} />
+        <Stack.Screen name="Rejected" component={Rejected} />
+        <Stack.Screen name="ViewJob" component={ViewJob} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Task" component={Task} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Dashbord" component={Dashbord} />
+        <Stack.Screen name="ManageAddress" component={ManageAddress} />
+        <Stack.Screen name="RegisterComplaint" component={RegisterComplaint} />
+        <Stack.Screen name="Incomplite" component={Incomplite} />
+        <Stack.Screen name="managePayments" component={managePayments} />
+        <Stack.Screen name="ServicePrice" component={ServicePrice} />
+        <Stack.Screen name="Discount" component={Discount} />
+        <Stack.Screen name="MyVouchers" component={MyVouchers} />
+        <Stack.Screen name="NewDashbord" component={NewDashbord} />
+        
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+    
+  )
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
+
