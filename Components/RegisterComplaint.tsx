@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 const RegisterComplaint = ()=>{
     return(
         <View>
-            <Text>RegisterComplaint</Text>
+            <Text>RegisterComplaint------------</Text>
         </View>
 
     )
