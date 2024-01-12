@@ -28,7 +28,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
             
             
             <Text style={{ fontSize: 19, color: 'black', marginTop:50, marginLeft:10 }}> User ID :</Text>
-            <TextInput style={style.InputBox} placeholder='Enter Your User ID '/>
+            <TextInput style={style.InputBox} placeholder='Please Enter Your User ID '/>
 
             <Text style={{ fontSize: 19, color: 'black',marginLeft:10 }}> Password :</Text>
             <TextInput style={style.InputBox} placeholder='Please Enter Your Password '
