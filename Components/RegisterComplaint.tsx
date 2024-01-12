@@ -10,7 +10,7 @@ const RegisterComplaint = ()=>{
       />
       <TextInput
         style={styles.input}
-        placeholder="Your Email"
+        placeholder=" enter Your Email"
         keyboardType="email-address"     
       />
       <TextInput
