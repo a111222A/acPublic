@@ -1,9 +1,51 @@
 
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, Modal, Pressable, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { Text, View, StyleSheet, ScrollView, Modal, Pressable, TextInput,FlatList } from 'react-native';
+import { BASEURL } from '../Components/Constant';
+type job ={
+"id":string,
+"name":string,
+"address":string,
+"phone":string,
+"job_id":string,
+"remark":string
+};
 
-
-const ViewJob = ({ navigation }: { navigation: any }) => {
+const ViewJob = ({ navigation,route }: { navigation: any } ) => {
+    const [data, setData] = useState<job[]>([]);
+    const { jobData } = route.params;
+    const jobTypeName = jobData.jobTypeName;
+    const login_id = jobData.id;
+    const type_id = jobData.jobTypId;
+    //console.warn(jobData);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(BASEURL + '/customerJobDetailsByTypeId',{
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: login_id,
+                        type_id: type_id,
+                        user_type:"customer"
+                      }),
+                });
+                const result = await response.json();
+                if (result.success) {
+                    setData(result.data);
+                  } else {
+                    console.error('API request failed:', result);
+                  }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+            
+        }
+        fetchData();
+    },[])
+    
     const Home = () => {
         navigation.navigate('Home');
     }
@@ -47,6 +89,8 @@ const ViewJob = ({ navigation }: { navigation: any }) => {
       />
             <View style={style.main}>
                 <ScrollView>
+                    {data.length?
+                    <FlatList data={data} renderItem={({item})=>
                     <View style={style.Box1}>
                         <View style={style.EXIMPOTEA}>
                             <Text style={style.EXIMPOTEA}> EXIMPOTEA LIMTED</Text>
@@ -54,15 +98,19 @@ const ViewJob = ({ navigation }: { navigation: any }) => {
                         </View>
                         <View style={{flexDirection:'row',marginLeft:20}}>
                         <Text style={{color:'#000',fontWeight:'bold'}}>Mobile :</Text>
-                        <Text style={{color:'#000',}}>1234567890</Text>
+                        <Text style={{color:'#000',}}>{item.phone}</Text>
                         </View>
                         <Text style={{color:'#000',fontWeight:'bold',marginLeft:20}}>Address : </Text>
-                        <Text style={{color:'#000',marginLeft:20}}>sir RNM House, 3-B Lal Bazar Street, 2nd  Floor,Kolkata-700001</Text>
+                        <Text style={{color:'#000',marginLeft:20}}>{item.address}</Text>
                         <View style={style.Remak}>
                             <Text style={{ color: '#000000', padding: 16,fontWeight: 'bold'}}> Remak : </Text>
-                            <Text style={{ color: '#000000', padding: 16,}}>PlS BE ON TIME</Text>
+                            <Text style={{ color: '#000000', padding: 16,}}>{item.remark}</Text>
                         </View>
                     </View>
+
+                }
+                    ></FlatList>
+                    :<Text>No Data Found.</Text>}
                 </ScrollView>
 
             </View>

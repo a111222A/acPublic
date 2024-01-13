@@ -1,0 +1,1 @@
+export const BASEURL= 'https://jyotiaircon.com/app/customer/';
