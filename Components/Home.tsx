@@ -4,8 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { BASEURL } from '../Components/Constant';
 
 const Home = ({ navigation }: { navigation: any }) => {
-  const loginId = 1;
-  const name = 'biswajit';
+  const loginId = '1';
   const [jobId1, setJobId1] = useState(1);
   const [jobId2, setJobId2] = useState(2);
   const [jobId3, setJobId3] = useState(3);
