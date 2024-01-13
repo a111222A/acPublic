@@ -11,7 +11,7 @@ type job ={
 "remark":string
 };
 
-const ViewJob = ({ navigation,route }: { navigation: any } ) => {
+const ViewJob = ({ navigation,route}: { navigation: any } ) => {
     const [data, setData] = useState<job[]>([]);
     const { jobData } = route.params;
     const jobTypeName = jobData.jobTypeName;

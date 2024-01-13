@@ -25,7 +25,7 @@ const Home = ({ navigation }: { navigation: any }) => {
       const result = await response.json();
       if (result.success) {
         const resultData = result.data;
-        resultData.forEach((item) => {
+        resultData.forEach((item:any) => {
           if (item.id == 1) {
             setJobId1(item.id);
             setJobName1(item.name);
@@ -56,7 +56,7 @@ const Home = ({ navigation }: { navigation: any }) => {
   useEffect(() => {
     getWorkingStatus();
   }, [])
-  const viewJob = (data) => {
+  const viewJob = (data:any) => {
     navigation.navigate('ViewJob',{ jobData: data });
   }
   const Completed = () => {
