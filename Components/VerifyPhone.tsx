@@ -30,7 +30,7 @@ const ResendCode = ()=>{
           margin:10
 
 
-        }}> Enter then verify code send to : </Text>
+        }}> Enter then verify code send to to : </Text>
 
 
         <TextInput 
