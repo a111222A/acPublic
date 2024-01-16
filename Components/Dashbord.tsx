@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View, Image } from 'react-native';
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -6,8 +6,37 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { BASEURL } from '../Components/Constant';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Dashbord = ({ navigation }: { navigation: any }) => {
+  const [error, setError] = useState(null);
+  const [name, setName] = useState(null);
+  const [moblieNumber, setMoblieNumber] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const nameValue = await AsyncStorage.getItem('name');
+        const moblieNumberValue = await AsyncStorage.getItem('moblie_number');
+        setName(nameValue);
+        setMoblieNumber(moblieNumberValue);
+        if (nameValue !== null) {
+          console.log('Name value from AsyncStorage:', nameValue);
+          // Do something with the retrieved value, such as updating the component state
+        } else {
+          console.log('Name value not found in AsyncStorage');
+        }
+      } catch (error) {
+        console.error('Error retrieving data from AsyncStorage:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
   const imagePaths = require('./assets/acreapir.png')
   const imagePat = require('./assets/propic.jpg');
   const Home = () => {
@@ -57,11 +86,11 @@ const Dashbord = ({ navigation }: { navigation: any }) => {
           />
           <View>
             <Text style={{ marginTop: 12, fontWeight: 'bold', color: '#000', marginLeft: 30 }}>
-              Welcome Krunals Chavda
+              Welcome {name}
             </Text >
             <View style={{ flexDirection: 'row', marginLeft: 30 }}><Feather name='phone-call' color={'#008080'} size={20} />
               <Text style={{ marginTop: 3, fontWeight: 'bold', color: '#000', marginLeft: 10 }}>
-                +91 0987654321
+                +91 {moblieNumber}
               </Text>
             </View>
           </View>
