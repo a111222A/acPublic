@@ -26,10 +26,9 @@ const Home = ({ navigation }: { navigation: any }) => {
   const getWorkingStatus = async () => {
     try {
       setLoading(true);
-      const userId = await AsyncStorage.getItem('userId');
-      useState(userId);
-      console.log(userId);
-      const response = await fetch(BASEURL + '/technicianDashboard?technician_id='+userId);
+      const storageUserId = await AsyncStorage.getItem('userId');
+      setUserId(storageUserId);
+      const response = await fetch(BASEURL + '/technicianDashboard?technician_id='+storageUserId);
       const result = await response.json();
       setLoading(false);
       if (result.success) {
