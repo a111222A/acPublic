@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight, TouchableOpacity,ActivityIndicator } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { BASEURL } from '../Components/Constant';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({ navigation }: { navigation: any }) => {
+  const [loading, setLoading] = useState(false);
   const loginId = '1';
+  
+  const [userId, setUserId] = useState();
   const [jobId1, setJobId1] = useState(1);
   const [jobId2, setJobId2] = useState(2);
   const [jobId3, setJobId3] = useState(3);
@@ -21,8 +25,13 @@ const Home = ({ navigation }: { navigation: any }) => {
   const [jobCount4, setJobCount4] = useState(0);
   const getWorkingStatus = async () => {
     try {
-      const response = await fetch(BASEURL + '/customerDashboard?customer_id='+loginId);
+      setLoading(true);
+      const userId = await AsyncStorage.getItem('userId');
+      useState(userId);
+      console.log(userId);
+      const response = await fetch(BASEURL + '/technicianDashboard?technician_id='+userId);
       const result = await response.json();
+      setLoading(false);
       if (result.success) {
         const resultData = result.data;
         resultData.forEach((item:any) => {
@@ -49,6 +58,7 @@ const Home = ({ navigation }: { navigation: any }) => {
       }
 
     } catch (error) {
+      setLoading(false);
       console.error(error);
     }
 
@@ -79,16 +89,16 @@ const Home = ({ navigation }: { navigation: any }) => {
   }
   return (
     <View style={{ flex: 1, }}>
-
+      {loading?<ActivityIndicator size={50} animating={loading}/>:''}
 
       <View style={style.main}>
-        <TouchableOpacity onPress={() => viewJob({id:loginId,jobTypId:jobId1,jobTypeName:jobName1})} >
+        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId1,jobTypeName:jobName1})} >
           <Text style={style.Box1}>
             {jobName1}                    {jobCount1}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => viewJob({id:loginId,jobTypId:jobId2,jobTypeName:jobName2})} >
+        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId2,jobTypeName:jobName2})} >
           <Text style={style.Box2}>
             {jobName2}               {jobCount2}
           </Text>
@@ -97,13 +107,13 @@ const Home = ({ navigation }: { navigation: any }) => {
 
 
       <View style={style.main}>
-        <TouchableOpacity onPress={() => viewJob({id:loginId,jobTypId:jobId3,jobTypeName:jobName3})} >
+        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId3,jobTypeName:jobName3})} >
           <Text style={style.Box3}>
             {jobName3}               {jobCount3}
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => viewJob({id:loginId,jobTypId:jobId4,jobTypeName:jobName4})} >
+        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId4,jobTypeName:jobName4})} >
           <Text style={style.Box4}>
             {jobName4}                {jobCount4}
           </Text>

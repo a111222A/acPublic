@@ -6,8 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }: { navigation: any }) => {
     const [loading, setLoading] = useState(false);
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [password, setPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('7003511367');
+    const [password, setPassword] = useState('pass');
     const [phoneNumberError, setPhoneNumberError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState(null);
@@ -55,7 +55,6 @@ const Login = ({ navigation }: { navigation: any }) => {
             setError(e.message);
             setLoading(false);
         }
-        navigation.navigate('Dashbord'); 
     }
     const RegisterCall = () => {
         navigation.navigate('Register')
@@ -68,7 +67,7 @@ const Login = ({ navigation }: { navigation: any }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            {loading?<ActivityIndicator size={50} animating={loading}/>:''}
+            {loading?<ActivityIndicator size={100} animating={loading}/>:''}
             
             <Text style={{ fontSize: 19, color: 'black', marginTop: 50, marginLeft: 10 }}> Phone Number :</Text>
             <TextInput style={style.InputBox} value={phoneNumber} onChangeText={(text) => setPhoneNumber(text)} placeholder='Please Enter Your Phone Number ' />
