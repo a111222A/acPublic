@@ -55,6 +55,7 @@ const Login = ({ navigation }: { navigation: any }) => {
             setError(e.message);
             setLoading(false);
         }
+
     }
     const RegisterCall = () => {
         navigation.navigate('Register')
