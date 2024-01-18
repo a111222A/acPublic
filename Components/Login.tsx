@@ -1,10 +1,11 @@
 import React, { Component, useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight,ActivityIndicator } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { BASEURL } from '../Components/Constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }: { navigation: any }) => {
+    const [loading, setLoading] = useState(false);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState(false);
@@ -26,6 +27,7 @@ const Login = ({ navigation }: { navigation: any }) => {
             return false;
         }
         try {
+            setLoading(true);
             const loginData = {
                 mobile: phoneNumber,
                 user_type: 'technician',
@@ -41,6 +43,7 @@ const Login = ({ navigation }: { navigation: any }) => {
                 body: JSON.stringify(loginData),
             });
             const result = await response.json();
+            setLoading(false);
             if (result.success) {
                 setError(null);
                 const sendData = {'moblie_number':result.data.moblie_number,'otp':result.otp};
@@ -50,8 +53,9 @@ const Login = ({ navigation }: { navigation: any }) => {
             }
         } catch (e) {
             setError(e.message);
+            setLoading(false);
         }
-        //navigation.navigate('Dashbord'); 
+        navigation.navigate('Dashbord'); 
     }
     const RegisterCall = () => {
         navigation.navigate('Register')
@@ -63,7 +67,8 @@ const Login = ({ navigation }: { navigation: any }) => {
 
 
     return (
-        <View style={{ flex: 1, }}>
+        <View style={{ flex: 1 }}>
+            {loading?<ActivityIndicator size={50} animating={loading}/>:''}
             
             <Text style={{ fontSize: 19, color: 'black', marginTop: 50, marginLeft: 10 }}> Phone Number :</Text>
             <TextInput style={style.InputBox} value={phoneNumber} onChangeText={(text) => setPhoneNumber(text)} placeholder='Please Enter Your Phone Number ' />
