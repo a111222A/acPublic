@@ -5,6 +5,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-date-picker'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { BASEURL } from '../Components/Constant';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const Register = ({ navigation }: { navigation: any }) => {
     const [isModalVisible, setModalVisible] = useState(false);
@@ -114,10 +115,21 @@ const Register = ({ navigation }: { navigation: any }) => {
                 >
                     <View style={style.modalContainer}>
                         <View style={style.modalContent}>
-                            <Text style={{ color: '#00ff00', fontWeight: '800' }}>Registration Successful !</Text>
-                            <View style={{ margin: 10, }}>
-                                <Button title="Close" onPress={closeModal} color={'#008000'} />
+                            <View>
+                            <Entypo name='check' color={'#76ff7a'} size={80} />
                             </View>
+                            
+                            <Text style={{ color:'black', fontWeight: '800' }}>Registration Successful !</Text>
+                            <View>
+                                <Text style={{fontSize:35,color:'black'}}>
+                                    Thank you!
+                                </Text>
+                            </View>
+                            <Pressable
+                            style={[style.button, style.buttonClose]}
+                            onPress={closeModal}>
+                            <Text style={style.textStyle}>OK</Text>
+                        </Pressable>
                         </View>
                     </View>
                 </Modal>
@@ -237,6 +249,133 @@ const style = StyleSheet.create({
     },
     modalButtonText: {
         color: 'white',
+    },
+    //
+    main: {
+        flex: 1,
+        flexDirection: 'column',
+        marginRight: 1,
+        backgroundColor: '#edf4f7'
+    },
+    Box1: {
+        flex: 1,
+        backgroundColor: "#ffffff",
+        margin: 20,
+        marginLeft: 5,
+        marginRight: 5,
+        shadowColor: "black",
+        elevation: 10,
+        shadowOpacity: 10,
+        height: 150,
+        width: 400,
+    },
+    EXIMPOTEA: {
+        flexDirection: 'row',
+        color: '#000000',
+        margin: 5,
+        fontSize: 14,
+        fontWeight: 'bold'
+    },
+    EXIMPOTEA1: {
+        flexDirection: 'row',
+        color: '#1b7a17',
+        margin: 5,
+        fontSize: 14,
+        fontWeight: 'bold',
+        
+    },
+    mobile: {
+        color: '#000000',
+        padding: 5,
+        fontWeight: 'bold'
+    },
+    Address: {
+        color: '#000',
+        margin: 3,
+        padding: 5,
+        fontWeight: 'bold',
+    },
+    Remak: {
+        backgroundColor: '#c1c2c0',
+        height: 60,
+        flexDirection:'row'
+
+    },
+
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 22,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+    },
+    buttonOpen: {
+        backgroundColor: '#F194FF',
+    },
+    buttonClose: {
+        backgroundColor: '#2196F3',
+    },
+    textStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    modalText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        color: '#000',
+        fontSize: 25,
+        fontWeight: 'bold',
+        
+        
+    },
+    Declaration: {
+        color: '#000000',
+        margin: 4
+    },
+    Status: {
+        color: '#000000',
+        fontSize: 20,
+        fontWeight: 'bold',
+        margin: 10
+
+    },
+    futter: {
+        textAlign: 'center',
+        color: '#ffffff',
+        padding: 8,
+    },
+    bnt: {
+        flex: 1,
+        backgroundColor: '#008080',
+        borderRadius: 5,
+        margin: 3
+    },Search:{
+        borderWidth:1,
+      margin:10,
+      borderRadius:30,
+      color:'#000',
+      fontSize:20,
+    
     },
 })
 

@@ -204,6 +204,7 @@ const style = StyleSheet.create({
   },
   Box1: {
     flex: 1,
+    borderColor:'#ff0000',
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',

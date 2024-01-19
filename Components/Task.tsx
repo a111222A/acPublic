@@ -24,13 +24,13 @@ const Task = () => {
             <View style={{}}>
 
               <Text style={styles.text}>Description : </Text>
-              <View style={{margin:5,}}>
-                <Text style={{color:'#000',fontWeight:'400'}}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, explicabo! Explicabo itaque aliquid quo iste.</Text>
+              <View style={{ margin: 5, }}>
+                <Text style={{ color: '#000', fontWeight: '400' }}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, explicabo! Explicabo itaque aliquid quo iste.</Text>
               </View>
             </View>
             <Text style={styles.text}>Assisn Date : 20-Dec-2023</Text>
-            <View style={{ flexDirection: 'row', justifyContent: 'center',margin:5 }}>
-              
+            <View style={{ flexDirection: 'row', justifyContent: 'center', margin: 5 }}>
+
               <TouchableOpacity style={{
                 padding: 10,
                 backgroundColor: '#008080',
