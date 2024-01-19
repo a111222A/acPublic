@@ -105,7 +105,7 @@ const Home = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={style.Box1}>
+        <View style={style.Box2}>
         <View>
           <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId2, jobTypeName: jobName2 })} >
           <View style={{justifyContent:'center',alignItems:'center'}}>
@@ -120,7 +120,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
 
       <View style={style.main}>
-      <View style={style.Box1}>
+      <View style={style.Box3}>
           <View>
             <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId3, jobTypeName: jobName3 })} >
               <View style={{justifyContent:'center',alignItems:'center'}}>
@@ -132,7 +132,7 @@ const Home = ({ navigation }: { navigation: any }) => {
           </View>
         </View>
 
-        <View style={style.Box1}>
+        <View style={style.Box4}>
         <View>
           <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId4, jobTypeName: jobName4 })} >
           <View style={{justifyContent:'center',alignItems:'center'}}>
@@ -203,6 +203,57 @@ const style = StyleSheet.create({
     marginRight: 5,
   },
   Box1: {
+    flex: 1,
+    borderColor:'#000080',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#eae9e8",
+    padding: 0,
+    margin: 10,
+    borderRadius: 30,
+    marginLeft: 5,
+    marginRight: 5,
+    //elevation: 10,
+    shadowOpacity: 1,
+    height: 300,
+    width: 190,
+  },
+  Box2: {
+    flex: 1,
+    borderColor:'#00ff00',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#eae9e8",
+    padding: 0,
+    margin: 10,
+    borderRadius: 30,
+    marginLeft: 5,
+    marginRight: 5,
+    //elevation: 10,
+    shadowOpacity: 1,
+    height: 300,
+    width: 190,
+  },
+  Box3: {
+    flex: 1,
+    borderColor:'#1ef1fa',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#eae9e8",
+    padding: 0,
+    margin: 10,
+    borderRadius: 30,
+    marginLeft: 5,
+    marginRight: 5,
+    //elevation: 10,
+    shadowOpacity: 1,
+    height: 300,
+    width: 190,
+  },
+  Box4: {
     flex: 1,
     borderColor:'#ff0000',
     borderWidth: 1,

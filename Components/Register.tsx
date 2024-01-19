@@ -116,7 +116,7 @@ const Register = ({ navigation }: { navigation: any }) => {
                     <View style={style.modalContainer}>
                         <View style={style.modalContent}>
                             <View>
-                            <Entypo name='check' color={'#76ff7a'} size={80} />
+                            <Entypo name='check' color={'#76ff7a'} size={30} />
                             </View>
                             
                             <Text style={{ color:'black', fontWeight: '800' }}>Registration Successful !</Text>
