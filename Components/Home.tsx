@@ -98,7 +98,7 @@ const Home = ({ navigation }: { navigation: any }) => {
           <View>
             <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId1, jobTypeName: jobName1 })} >
               <View style={{justifyContent:'center',alignItems:'center'}}>
-                <Feather name='package' color={'#008080'} size={80} />
+                <Feather name='package' color={'#000080'} size={80} />
               </View>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobName1}</Text>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobCount1}</Text>
@@ -109,7 +109,7 @@ const Home = ({ navigation }: { navigation: any }) => {
         <View>
           <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId2, jobTypeName: jobName2 })} >
           <View style={{justifyContent:'center',alignItems:'center'}}>
-                <Entypo name='cup' color={'#008080'} size={80} />
+                <Entypo name='cup' color={'#00ff00'} size={80} />
               </View>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobName2}</Text>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobCount2}</Text>
@@ -124,7 +124,7 @@ const Home = ({ navigation }: { navigation: any }) => {
           <View>
             <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId3, jobTypeName: jobName3 })} >
               <View style={{justifyContent:'center',alignItems:'center'}}>
-                <Entypo name='cycle' color={'#008080'} size={80} />
+                <Entypo name='cycle' color={'#1ef1fa'} size={80} />
               </View>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobName3}</Text>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobCount3}</Text>
@@ -136,7 +136,7 @@ const Home = ({ navigation }: { navigation: any }) => {
         <View>
           <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId4, jobTypeName: jobName4 })} >
           <View style={{justifyContent:'center',alignItems:'center'}}>
-                <Entypo name='circle-with-cross' color={'#008080'} size={80} />
+                <Entypo name='circle-with-cross' color={'#ff0000'} size={80} />
               </View>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobName4}</Text>
               <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobCount4}</Text>
