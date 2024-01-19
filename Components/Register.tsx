@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableHighlight,Modal,Pressable } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableHighlight, Modal, Pressable } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import DatePicker from 'react-native-date-picker'
@@ -8,72 +8,72 @@ import { BASEURL } from '../Components/Constant';
 
 const Register = ({ navigation }: { navigation: any }) => {
     const [isModalVisible, setModalVisible] = useState(false);
-    
-    const [name,setName] = useState('');
-    const [mobileNumber,setMobileNumber] = useState('');
-    const [email,setEmail] = useState('');
-    const [pineCode,setPineCode] = useState('');
-    const [address,setAddress] = useState('');
-    const [password,setPassword] = useState('');
 
-    const [nameError,setNameError] = useState(false);
-    const [mobileNumberError,setMobileNumberError] = useState(false);
-    const [emailError,setEmailError] = useState(false);
-    const [pineCodeError,setPineCodeError] = useState(false);
-    const [addressError,setAddressError] = useState(false);
-    const [passwordError,setPasswordError] = useState(false);
+    const [name, setName] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [pineCode, setPineCode] = useState('');
+    const [address, setAddress] = useState('');
+    const [password, setPassword] = useState('');
 
-    const Register =async()=>{
-        
-        if(!name){
+    const [nameError, setNameError] = useState(false);
+    const [mobileNumberError, setMobileNumberError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [pineCodeError, setPineCodeError] = useState(false);
+    const [addressError, setAddressError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+
+    const Register = async () => {
+
+        if (!name) {
             setNameError(true);
-        }else{
+        } else {
             setNameError(false);
         }
-        
-        if(!mobileNumber){
+
+        if (!mobileNumber) {
             setMobileNumberError(true);
-        }else{
+        } else {
             setMobileNumberError(false);
         }
-        if(!email){
+        if (!email) {
             setEmailError(true);
-        }else{
+        } else {
             setEmailError(false);
         }
-        if(!pineCode){
+        if (!pineCode) {
             setPineCodeError(true);
-        }else{
+        } else {
             setPineCodeError(false);
         }
-        if(!address){
+        if (!address) {
             setAddressError(true);
-        }else{
+        } else {
             setAddressError(false);
         }
-        if(!password){
+        if (!password) {
             setPasswordError(true);
-        }else{
+        } else {
             setPasswordError(false);
-        } 
+        }
 
-        if(!name || !mobileNumber || !email || !pineCode || !address || !password){
+        if (!name || !mobileNumber || !email || !pineCode || !address || !password) {
             return false;
-        } 
-         try {
+        }
+        try {
             const registrationData = {
                 name: name,
-                mobileNumber:mobileNumber,
-                email:email,
-                address:address,
-                pine_code:pineCode,
-                password:password
-              };
-              //console.warn(registrationData);
-            const response = await fetch(BASEURL + '/technicianRegister',{
+                mobileNumber: mobileNumber,
+                email: email,
+                address: address,
+                pine_code: pineCode,
+                password: password
+            };
+            //console.warn(registrationData);
+            const response = await fetch(BASEURL + '/technicianRegister', {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(registrationData),
             });
@@ -81,12 +81,12 @@ const Register = ({ navigation }: { navigation: any }) => {
             if (result.success) {
                 setModalVisible(true);
                 //setData(result.data);
-              } else {
+            } else {
                 console.error('API request failed:', result.message);
-              }
+            }
         } catch (error) {
             console.error('Error fetching data:', error);
-        } 
+        }
     }
     {/** **/ }
     const [open, setOpen] = useState(false);
@@ -99,66 +99,68 @@ const Register = ({ navigation }: { navigation: any }) => {
     const closeModal = () => {
         setModalVisible(false);
         navigation.navigate('Login');
-      };
+    };
 
 
     return (
         <View style={{ flex: 1, }}>
             <View style={style.container}>
-            <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isModalVisible}
-        onRequestClose={closeModal}
-        
-      >
-        <View style={style.modalContainer}>
-          <View style={style.modalContent}>
-            <Text>Registration Successful!</Text>
-            <Button title="Close" onPress={closeModal} style={style.modalButton} />
-          </View>
-        </View>
-      </Modal>
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={isModalVisible}
+                    onRequestClose={closeModal}
+
+                >
+                    <View style={style.modalContainer}>
+                        <View style={style.modalContent}>
+                            <Text style={{ color: '#00ff00', fontWeight: '800' }}>Registration Successful !</Text>
+                            <View style={{ margin: 10, }}>
+                                <Button title="Close" onPress={closeModal} color={'#008000'} />
+                            </View>
+                        </View>
+                    </View>
+                </Modal>
             </View>
             <ScrollView>
                 <Text style={{ fontSize: 20, color: 'black' }}>  Name :</Text>
-                <TextInput placeholder=' Enter Your First Name' value={name} onChangeText={(text)=>setName(text)} style={style.InputBox} />
-                {nameError?<Text style={style.errorMessage}> Please Enter Your First Name </Text>:''}  
+                <TextInput placeholder=' Enter Your First Name' value={name} onChangeText={(text) => setName(text)} style={style.InputBox} />
+                {nameError ? <Text style={style.errorMessage}> Please Enter Your First Name </Text> : ''}
 
-                
+
                 <Text style={{ fontSize: 20, color: 'black' }}>  Mobile Number :</Text>
-                <TextInput placeholder=' Enter Your Mobile No' value={mobileNumber} onChangeText={(text)=>setMobileNumber(text)} style={style.InputBox} />
-                {mobileNumberError?<Text style={style.errorMessage}> Please Enter Mobile Number </Text>:''}
+                <TextInput placeholder=' Enter Your Mobile No' value={mobileNumber} onChangeText={(text) => setMobileNumber(text)} style={style.InputBox} />
+                {mobileNumberError ? <Text style={style.errorMessage}> Please Enter Mobile Number </Text> : ''}
 
                 <Text style={{ fontSize: 20, color: 'black' }}>  Email ID :</Text>
-                <TextInput placeholder=' Enter Your Email ID' value={email} onChangeText={(text)=>setEmail(text)} style={style.InputBox} />
-                {emailError?<Text style={style.errorMessage}> Please Enter Email ID </Text>:''}
+                <TextInput placeholder=' Enter Your Email ID' value={email} onChangeText={(text) => setEmail(text)} style={style.InputBox} />
+                {emailError ? <Text style={style.errorMessage}> Please Enter Email ID </Text> : ''}
 
 
                 <Text style={{ fontSize: 20, color: 'black' }}>  Pine code :</Text>
-                <TextInput placeholder=' Enter Pine code' value={pineCode} onChangeText={(text)=>setPineCode(text)} style={style.InputBox} />
-                {pineCodeError?<Text style={style.errorMessage}> Please Enter Pine code </Text>:''}
+                <TextInput placeholder=' Enter Pine code' value={pineCode} onChangeText={(text) => setPineCode(text)} style={style.InputBox} />
+                {pineCodeError ? <Text style={style.errorMessage}> Please Enter Pine code </Text> : ''}
 
-               
+
 
                 <Text style={{ fontSize: 20, color: 'black' }}>  Address :</Text>
-                <TextInput placeholder=' Enter Your Address' value={address} onChangeText={(text)=>setAddress(text)} style={style.InputBox} />
-                {addressError?<Text style={style.errorMessage}> Please Enter Address </Text>:''}
+                <TextInput placeholder=' Enter Your Address' value={address} onChangeText={(text) => setAddress(text)} style={style.InputBox} />
+                {addressError ? <Text style={style.errorMessage}> Please Enter Address </Text> : ''}
 
 
                 <Text style={{ fontSize: 20, color: 'black' }}>  Password :</Text>
-                <TextInput placeholder='Enter Password ' value={password} onChangeText={(text)=>setPassword(text)} secureTextEntry={true} style={style.InputBox} />
-                {passwordError?<Text style={style.errorMessage}> Please Enter Password </Text>:''}
+                <TextInput placeholder='Enter Password ' value={password} onChangeText={(text) => setPassword(text)} secureTextEntry={true} style={style.InputBox} />
+                {passwordError ? <Text style={style.errorMessage}> Please Enter Password </Text> : ''}
 
                 <View style={{ margin: 6 }}>
                     <TouchableHighlight onPress={() => Register()}>
                         <Text style={style.Button}>SingUp</Text>
                     </TouchableHighlight>
                 </View >
-                {/*ihh*/} 
-                
-                   
-               
+                {/*ihh*/}
+
+
+
             </ScrollView>
         </View>
     )
@@ -171,7 +173,7 @@ const style = StyleSheet.create({
         borderWidth: 2,
         fontSize: 20,
         margin: 10,
-        marginBottom:5
+        marginBottom: 5
     },
     Button: {
         backgroundColor: "#008080",
@@ -197,7 +199,7 @@ const style = StyleSheet.create({
     text: {
         fontSize: 20,
         margin: 10,
-        color:'#000'
+        color: '#000'
     },
     fil: {
         width: 32,
@@ -207,35 +209,35 @@ const style = StyleSheet.create({
         margin: 2
     },
     errorMessage: {
-        fontSize: 20, 
+        fontSize: 20,
         color: 'red'
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-      },
-      modalContainer: {
+    },
+    modalContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // semi-transparent background
-      },
-      modalContent: {
+    },
+    modalContent: {
         backgroundColor: 'white',
         padding: 20,
         borderRadius: 10,
         alignItems: 'center',
-      },
-      modalButton: {
+    },
+    modalButton: {
         marginTop: 20,
         padding: 10,
         backgroundColor: 'blue',
         borderRadius: 5,
-      },
-      modalButtonText: {
+    },
+    modalButtonText: {
         color: 'white',
-      },
+    },
 })
 
 export default Register;

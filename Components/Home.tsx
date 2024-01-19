@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight, TouchableOpacity,ActivityIndicator } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, TouchableHighlight, TouchableOpacity, ActivityIndicator, ImageBackground } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { BASEURL } from '../Components/Constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Feather from 'react-native-vector-icons/Feather';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const Home = ({ navigation }: { navigation: any }) => {
+  const imgmap = require('./assets/NewJobs.png')
   const [loading, setLoading] = useState(false);
   const loginId = '1';
-  
+
   const [userId, setUserId] = useState();
   const [jobId1, setJobId1] = useState(1);
   const [jobId2, setJobId2] = useState(2);
@@ -28,12 +31,12 @@ const Home = ({ navigation }: { navigation: any }) => {
       setLoading(true);
       const storageUserId = await AsyncStorage.getItem('userId');
       setUserId(storageUserId);
-      const response = await fetch(BASEURL + '/technicianDashboard?technician_id='+storageUserId);
+      const response = await fetch(BASEURL + '/technicianDashboard?technician_id=' + storageUserId);
       const result = await response.json();
       setLoading(false);
       if (result.success) {
         const resultData = result.data;
-        resultData.forEach((item:any) => {
+        resultData.forEach((item: any) => {
           if (item.id == 1) {
             setJobId1(item.id);
             setJobName1(item.name);
@@ -65,8 +68,8 @@ const Home = ({ navigation }: { navigation: any }) => {
   useEffect(() => {
     getWorkingStatus();
   }, [])
-  const viewJob = (data:any) => {
-    navigation.navigate('ViewJob',{ jobData: data });
+  const viewJob = (data: any) => {
+    navigation.navigate('ViewJob', { jobData: data });
   }
   const Completed = () => {
     navigation.navigate('Completed');
@@ -88,35 +91,58 @@ const Home = ({ navigation }: { navigation: any }) => {
   }
   return (
     <View style={{ flex: 1, }}>
-      {loading?<ActivityIndicator size={50} animating={loading}/>:''}
+      {loading ? <ActivityIndicator size={50} animating={loading} /> : ''}
 
       <View style={style.main}>
-        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId1,jobTypeName:jobName1})} >
-          <Text style={style.Box1}>
-            {jobName1}                    {jobCount1}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId2,jobTypeName:jobName2})} >
-          <Text style={style.Box2}>
-            {jobName2}               {jobCount2}
-          </Text>
-        </TouchableOpacity>
+        <View style={style.Box1}>
+          <View>
+            <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId1, jobTypeName: jobName1 })} >
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                <Feather name='package' color={'#008080'} size={80} />
+              </View>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobName1}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobCount1}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={style.Box1}>
+        <View>
+          <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId2, jobTypeName: jobName2 })} >
+          <View style={{justifyContent:'center',alignItems:'center'}}>
+                <Entypo name='cup' color={'#008080'} size={80} />
+              </View>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobName2}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobCount2}</Text>
+          </TouchableOpacity>
+          </View>
+        </View>
       </View>
 
 
       <View style={style.main}>
-        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId3,jobTypeName:jobName3})} >
-          <Text style={style.Box3}>
-            {jobName3}               {jobCount3}
-          </Text>
-        </TouchableOpacity>
+      <View style={style.Box1}>
+          <View>
+            <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId3, jobTypeName: jobName3 })} >
+              <View style={{justifyContent:'center',alignItems:'center'}}>
+                <Entypo name='cycle' color={'#008080'} size={80} />
+              </View>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobName3}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black' }}>{jobCount3}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-        <TouchableOpacity onPress={() => viewJob({id:userId,jobTypId:jobId4,jobTypeName:jobName4})} >
-          <Text style={style.Box4}>
-            {jobName4}                {jobCount4}
-          </Text>
-        </TouchableOpacity>
+        <View style={style.Box1}>
+        <View>
+          <TouchableOpacity onPress={() => viewJob({ id: userId, jobTypId: jobId4, jobTypeName: jobName4 })} >
+          <View style={{justifyContent:'center',alignItems:'center'}}>
+                <Entypo name='circle-with-cross' color={'#008080'} size={80} />
+              </View>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobName4}</Text>
+              <Text style={{ textAlign: 'center', fontSize: 25, color: 'black',justifyContent:'center' }}>{jobCount4}</Text>
+          </TouchableOpacity>
+          </View>
+        </View>
       </View>
 
       <View style={{ flexDirection: 'row', height: 42, }}>
@@ -178,79 +204,19 @@ const style = StyleSheet.create({
   },
   Box1: {
     flex: 1,
-    backgroundColor: "#edea54",
-    color: "black",
-    fontSize: 24,
-    textAlign: 'center',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#eae9e8",
     padding: 0,
     margin: 10,
     borderRadius: 30,
     marginLeft: 5,
     marginRight: 5,
-    shadowColor: "black",
-    elevation: 10,
+    //elevation: 10,
     shadowOpacity: 1,
     height: 300,
     width: 190,
-    paddingTop: 150
-
-
-  },
-  Box2: {
-    flex: 1,
-    backgroundColor: "#17f20e",
-    color: "black",
-    fontSize: 24,
-    textAlign: 'center',
-    padding: 0,
-    margin: 10,
-    borderRadius: 30,
-    marginLeft: 5,
-    marginRight: 5,
-    shadowColor: "black",
-    elevation: 10,
-    shadowOpacity: 1,
-    height: 300,
-    width: 190,
-    paddingTop: 150
-
-
-  },
-  Box3: {
-    flex: 1,
-    backgroundColor: "#da8261",
-    color: "black",
-    fontSize: 24,
-    textAlign: 'center',
-    margin: 10,
-    borderRadius: 30,
-    marginLeft: 5,
-    marginRight: 5,
-    shadowColor: "black",
-    elevation: 10,
-    shadowOpacity: 1,
-    height: 300,
-    width: 190,
-    paddingTop: 150
-
-
-  }, Box4: {
-    flex: 1,
-    backgroundColor: "#fff",
-    color: "black",
-    fontSize: 24,
-    textAlign: 'center',
-    padding: 0,
-    margin: 10,
-    borderRadius: 30,
-    marginLeft: 5,
-    marginRight: 5,
-    shadowColor: "black",
-    elevation: 10,
-    shadowOpacity: 1,
-    height: 300,
-    width: 190,
-    paddingTop: 150,
   },
   futter: {
     textAlign: 'center',

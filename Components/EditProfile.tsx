@@ -125,8 +125,10 @@ const EditProfile = ({ navigation }: { navigation: any }) => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text>Profile Updated Successful!</Text>
-              <Button title="Close" onPress={closeModal} style={styles.modalButton} />
+              <Text style={{color:'#00ff00',fontWeight:'800'}}>Profile Updated Successful!</Text>
+              <View style={{margin:10,}}>
+              <Button title="Close" onPress={closeModal} color={'#008000'} />
+              </View>
             </View>
           </View>
         </Modal>
