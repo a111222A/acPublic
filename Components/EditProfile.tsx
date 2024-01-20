@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableHighlight,Modal,Pressable,ActivityIndicator,TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableHighlight, Modal, Pressable, ActivityIndicator, TouchableOpacity, Image } from 'react-native'
 import { BASEURL } from '../Components/Constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -113,9 +113,14 @@ const EditProfile = ({ navigation }: { navigation: any }) => {
     setModalVisible(false);
     navigation.navigate('Profile');
   };
+  const imagePat = require('./assets/propic.jpg');
 
   return (
     <View style={styles.container}>
+     <Image
+        source={imagePat}
+        style={styles.profileImage}
+      />
       <View style={styles.container}>
         <Modal
           animationType="slide"
@@ -126,18 +131,21 @@ const EditProfile = ({ navigation }: { navigation: any }) => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-            <View>
-                            <Entypo name='check' color={'#76ff7a'} size={30} />
-                            </View>
-              <Text style={{fontWeight:'800',color:'black'}}>Profile Updated Successful!</Text>
-              <View style={{margin:10,}}>
-              <Button title="Close" onPress={closeModal} color={'#008080'} />
+              <View>
+                <Entypo name='check' color={'#76ff7a'} size={30} />
+              </View>
+              <Text style={{ fontWeight: '800', color: 'black' }}>Profile Updated Successful!</Text>
+              <View style={{ margin: 10, }}>
+                <Button title="Close" onPress={closeModal} color={'#008080'} />
               </View>
             </View>
           </View>
         </Modal>
       </View>
       {loading ? <ActivityIndicator size={50} animating={loading} /> : ''}
+      {/*<View>
+     
+      </View>*/}
       <Text style={styles.header}>Edit Profile</Text>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Name</Text>
@@ -241,6 +249,12 @@ const styles = StyleSheet.create({
   },
   modalButtonText: {
     color: 'white',
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 16,
   },
 });
 
