@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableHighlight,Modal,Pressable,ActivityIndicator,TouchableOpacity } from 'react-native'
 import { BASEURL } from '../Components/Constant';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const EditProfile = ({ navigation }: { navigation: any }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -125,9 +126,12 @@ const EditProfile = ({ navigation }: { navigation: any }) => {
         >
           <View style={styles.modalContainer}>
             <View style={styles.modalContent}>
-              <Text style={{color:'#00ff00',fontWeight:'800'}}>Profile Updated Successful!</Text>
+            <View>
+                            <Entypo name='check' color={'#76ff7a'} size={30} />
+                            </View>
+              <Text style={{fontWeight:'800',color:'black'}}>Profile Updated Successful!</Text>
               <View style={{margin:10,}}>
-              <Button title="Close" onPress={closeModal} color={'#008000'} />
+              <Button title="Close" onPress={closeModal} color={'#008080'} />
               </View>
             </View>
           </View>

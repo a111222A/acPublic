@@ -332,7 +332,7 @@ const style = StyleSheet.create({
         backgroundColor: '#F194FF',
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        backgroundColor: '#008080',
     },
     textStyle: {
         color: 'white',
